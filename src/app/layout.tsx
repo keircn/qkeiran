@@ -8,6 +8,7 @@ import './globals.css';
 const main = League_Spartan({
   variable: '--font-main',
   display: 'swap',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
