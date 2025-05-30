@@ -63,7 +63,7 @@ export function HomeClient() {
                 alt='qkeiran_avatar'
                 width={128}
                 height={128}
-                className='rounded-full cursor-pointer'
+                className='cursor-pointer rounded-full'
                 onClick={() => setIsImagePopupOpen(true)}
                 initial={{ scale: 1 }}
                 whileHover={{
@@ -72,10 +72,10 @@ export function HomeClient() {
                 whileTap={{
                   scale: 0.95,
                 }}
-                transition={{ 
-                  type: "spring",
+                transition={{
+                  type: 'spring',
                   stiffness: 300,
-                  damping: 20
+                  damping: 20,
                 }}
               />
             </motion.div>
@@ -98,7 +98,7 @@ export function HomeClient() {
         isOpen={isImagePopupOpen}
         onClose={() => setIsImagePopupOpen(false)}
         imageUrl={avatarUrl}
-        imageAlt="qkeiran_avatar"
+        imageAlt='qkeiran_avatar'
       />
     </main>
   );

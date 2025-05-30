@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { LuDownload, LuX, LuFile } from 'react-icons/lu';
+import { LuDownload, LuX } from 'react-icons/lu';
 import { useEffect } from 'react';
 
 interface ImagePopupProps {
@@ -11,7 +11,12 @@ interface ImagePopupProps {
   imageAlt?: string;
 }
 
-export function ImagePopup({ isOpen, onClose, imageUrl, imageAlt = 'Image' }: ImagePopupProps) {
+export function ImagePopup({
+  isOpen,
+  onClose,
+  imageUrl,
+  imageAlt = 'Image',
+}: ImagePopupProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -48,65 +53,65 @@ export function ImagePopup({ isOpen, onClose, imageUrl, imageAlt = 'Image' }: Im
     }
   };
 
-  const handleOpen = () => {
+  /* const handleOpen = () => {
     window.open(imageUrl, '_blank');
-  };
+  }; */
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+            className='bg-background/80 fixed inset-0 z-50 backdrop-blur-sm'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-          
+
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className='fixed inset-0 z-50 flex items-center justify-center p-4'
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
           >
             <div
-              className="relative bg-card border border-border rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+              className='bg-card border-border relative max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-lg border shadow-2xl'
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-2 right-2 z-10 h-8 w-8 bg-background/80 hover:bg-background rounded-md border border-border/20 hover:border-border transition-all duration-200 flex items-center justify-center cursor-pointer"
+                className='bg-background/80 hover:bg-background border-border/20 hover:border-border absolute top-2 right-2 z-10 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border transition-all duration-200'
                 onClick={onClose}
               >
-                <LuX className="h-4 w-4 text-foreground" />
+                <LuX className='text-foreground h-4 w-4' />
               </button>
 
-              <div className="p-6 pb-4">
-                <div className="relative w-full h-96 bg-muted rounded-lg overflow-hidden">
+              <div className='p-6 pb-4'>
+                <div className='bg-muted relative h-96 w-full overflow-hidden rounded-lg'>
                   <img
                     src={imageUrl}
                     alt={imageAlt}
-                    className="w-full h-full object-cover object-center"
+                    className='h-full w-full object-cover object-center'
                   />
                 </div>
               </div>
 
-              <div className="px-6 pb-4 flex gap-3 justify-end">
-                <button 
-                  onClick={handleDownload} 
-                  className="flex items-center justify-center gap-2 px-4 py-2 border border-primary/5 hover:border-primary/10 rounded bg-background hover:bg-muted text-foreground hover:text-foreground transition-all duration-200 cursor-pointer"
+              <div className='flex justify-end gap-3 px-6 pb-4'>
+                <button
+                  onClick={handleDownload}
+                  className='border-primary/5 hover:border-primary/10 bg-background hover:bg-muted text-foreground hover:text-foreground flex cursor-pointer items-center justify-center gap-2 rounded border px-4 py-2 transition-all duration-200'
                 >
-                  <LuDownload className="h-4 w-4" />
+                  <LuDownload className='h-4 w-4' />
                   Download
                 </button>
-                <button 
+                {/* <button 
                   onClick={handleOpen} 
                   className="flex items-center justify-center gap-2 px-4 py-2 bg-primary hover:bg-primary/70 text-primary-foreground rounded transition-all duration-200 cursor-pointer"
                 >
                   <LuFile className="h-4 w-4" />
                   Open
-                </button>
+                </button> */}
               </div>
             </div>
           </motion.div>

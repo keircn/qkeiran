@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ key: string; children: React.ReactNode; }>) {
+}: Readonly<{ key: string; children: React.ReactNode }>) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${main.variable} relative min-h-screen antialiased`}>
