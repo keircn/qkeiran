@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { SocialLinks } from 'cum/components/SocialLinks';
 import Image from 'next/image';
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -10,8 +11,12 @@ import {
   CardHeader,
   CardTitle,
 } from 'cum/components/ui/card';
+import { ImagePopup } from '../ImagePopup';
 
 export function HomeClient() {
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const avatarUrl = 'https://avatars.githubusercontent.com/u/159267417?v=4';
+
   return (
     <main className='flex min-h-[90vh] flex-col items-center justify-center p-4 md:p-24'>
       <motion.div
@@ -54,12 +59,25 @@ export function HomeClient() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <Image
-                src='https://avatars.githubusercontent.com/u/159267417?v=4'
+              <motion.img
+                src={avatarUrl}
                 alt='Profile Picture'
                 width={128}
                 height={128}
-                className='rounded-full'
+                className='rounded-full cursor-pointer'
+                onClick={() => setIsImagePopupOpen(true)}
+                initial={{ scale: 1 }}
+                whileHover={{
+                  scale: 1.05,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
+                }}
               />
             </motion.div>
           </CardHeader>
@@ -76,6 +94,13 @@ export function HomeClient() {
           </CardContent>
         </Card>
       </motion.div>
+
+      <ImagePopup
+        isOpen={isImagePopupOpen}
+        onClose={() => setIsImagePopupOpen(false)}
+        imageUrl={avatarUrl}
+        imageAlt="Keiran's Profile Picture"
+      />
     </main>
   );
 }
