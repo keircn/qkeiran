@@ -25,7 +25,6 @@ const nextConfig: NextConfig = {
 
   experimental: {
     scrollRestoration: true,
-    optimizeCss: true,
   }
 };
 
