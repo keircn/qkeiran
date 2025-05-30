@@ -12,8 +12,42 @@ const main = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: 'qkeiran',
+  title: {
+    default: 'qkeiran',
+    template: '%s | qkeiran',
+  },
   description: 'i eat glue',
+  openGraph: {
+    title: 'qkeiran',
+    description: 'i eat glue',
+    url: 'https://keiran.cc',
+    siteName: 'qkeiran',
+    images: [
+      {
+        url: 'https://keiran.cc/meta/og.png',
+        width: 400,
+        height: 200,
+        alt: 'qkeiran',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'qkeiran',
+    description: 'i eat glue',
+    images: ['https://keiran.cc/og.png'],
+    site: '@keiranjs',
+    creator: '@keiranjs',
+  },
+  metadataBase: new URL('https://keiran.cc'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      en: '/en',
+    },
+  },
 };
 
 export default function RootLayout({
