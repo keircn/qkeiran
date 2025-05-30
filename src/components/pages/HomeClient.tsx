@@ -2,7 +2,6 @@
 
 import { motion } from 'motion/react';
 import { SocialLinks } from 'cum/components/SocialLinks';
-import Image from 'next/image';
 import { useState } from 'react';
 import {
   Card,
@@ -11,11 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from 'cum/components/ui/card';
-import { ImagePopup } from '../ImagePopup';
+import { ImagePopup } from 'cum/components/ImagePopup';
 
 export function HomeClient() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const avatarUrl = 'https://avatars.githubusercontent.com/u/159267417?v=4';
+  const avatarUrl = 'https://r2.slop.sh/rain-pfp.jpg';
 
   return (
     <main className='flex min-h-[90vh] flex-col items-center justify-center p-4 md:p-24'>
@@ -61,7 +60,7 @@ export function HomeClient() {
             >
               <motion.img
                 src={avatarUrl}
-                alt='Profile Picture'
+                alt='qkeiran_avatar'
                 width={128}
                 height={128}
                 className='rounded-full cursor-pointer'
@@ -99,7 +98,7 @@ export function HomeClient() {
         isOpen={isImagePopupOpen}
         onClose={() => setIsImagePopupOpen(false)}
         imageUrl={avatarUrl}
-        imageAlt="Keiran's Profile Picture"
+        imageAlt="qkeiran_avatar"
       />
     </main>
   );
