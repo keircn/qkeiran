@@ -13,7 +13,7 @@ const main = League_Spartan({
 
 export const metadata: Metadata = {
   title: 'qkeiran',
-  description: 'powered by nextjs',
+  description: 'i eat glue',
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${main.variable} relative min-h-screen antialiased`}>
-        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <Navbar />
           <Background />
           {children}
