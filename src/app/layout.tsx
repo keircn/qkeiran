@@ -12,10 +12,7 @@ const main = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'qkeiran',
-    template: '%s | qkeiran',
-  },
+  title: 'qkeiran',
   description: 'i eat glue',
   openGraph: {
     title: 'qkeiran',
