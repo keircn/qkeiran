@@ -1,18 +1,31 @@
 'use client';
 
-import * as React from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { memo } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { FaCode } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
 
 import { ModeToggle } from 'cum/components/layout/ThemeToggle';
 import Image from 'next/image';
 
-const NavbarComponent: React.FC = () => {
+function NavbarComponent() {
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+  const pathname = usePathname();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else {
+      setShouldAnimate(false);
+    }
+  }, [pathname]);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
+      initial={shouldAnimate ? { opacity: 0, y: -20 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.1 }}
     >
@@ -45,7 +58,7 @@ const NavbarComponent: React.FC = () => {
       </header>
     </motion.div>
   );
-};
+}
 
 export const Navbar = memo(NavbarComponent);
 Navbar.displayName = 'Navbar';
