@@ -83,7 +83,7 @@ export function HomeClient() {
           <CardContent className='pt-2 pb-4'>
             <div className='flex justify-center'>
               <SocialLinks
-                github='https://github.com/q4ow'
+                github='https://github.com/keircn'
                 twitter='https://twitter.com/keiranjs'
                 discord='https://discord.com/users/1230319937155760131'
                 ko-fi='https://ko-fi.com/qkeiran'

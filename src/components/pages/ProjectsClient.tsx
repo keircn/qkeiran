@@ -39,7 +39,7 @@ export function ProjectsClient() {
     const fetchRepos = async () => {
       try {
         const response = await fetch(
-          'https://api.github.com/users/q4ow/repos?sort=updated&per_page=9'
+          'https://api.github.com/users/keircn/repos?sort=updated&per_page=9'
         );
         if (!response.ok) {
           throw new Error('Failed to fetch repositories');
