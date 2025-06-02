@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { LuDownload, LuX } from 'react-icons/lu';
 import { useEffect } from 'react';
-import { type ImagePopupProps } from '~/types/imagePopup';
+import { type ImagePopupProps } from '~/types/image-popup';
 
 export function ImagePopup({
   isOpen,

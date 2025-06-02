@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GitHubRepo, RepoRequest } from '~/types/github';
+import { githubCache } from '~/lib/caching/github-cache';
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,6 +25,13 @@ export async function POST(request: NextRequest) {
 
     const repoPromises = body.repos.map(async (repoName) => {
       try {
+        const cachedRepo = githubCache.get(repoName);
+        if (cachedRepo) {
+          console.log(`Using cached data for ${repoName}`);
+          return cachedRepo;
+        }
+
+        console.log(`Fetching fresh data for ${repoName}`);
         const response = await fetch(
           `https://api.github.com/repos/${repoName}`,
           { headers }
@@ -34,7 +42,11 @@ export async function POST(request: NextRequest) {
           return null;
         }
 
-        return await response.json();
+        const repoData = await response.json();
+
+        githubCache.set(repoName, repoData);
+
+        return repoData;
       } catch (error) {
         console.error(`Error fetching ${repoName}:`, error);
         return null;
@@ -47,10 +59,16 @@ export async function POST(request: NextRequest) {
       (repo): repo is GitHubRepo => repo !== null
     );
 
+    const cacheStats = githubCache.getStats();
+
     return NextResponse.json({
       repos: validRepos,
       total: validRepos.length,
       requested: body.repos.length,
+      cache: {
+        totalCachedRepos: cacheStats.totalEntries,
+        cacheHits: body.repos.filter((repo) => githubCache.has(repo)).length,
+      },
     });
   } catch (error) {
     console.error('API Error:', error);
