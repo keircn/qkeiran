@@ -3,13 +3,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { LuDownload, LuX } from 'react-icons/lu';
 import { useEffect } from 'react';
-
-interface ImagePopupProps {
-  isOpen: boolean;
-  onClose: () => void;
-  imageUrl: string;
-  imageAlt?: string;
-}
+import { type ImagePopupProps } from '~/types/imagePopup';
 
 export function ImagePopup({
   isOpen,

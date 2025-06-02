@@ -15,20 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '~/components/ui/card';
-
-interface Repository {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string | null;
-  topics: string[];
-  created_at: string;
-  updated_at: string;
-  homepage: string | null;
-}
+import { Repository } from '~/types/projects';
 
 export function ProjectsClient() {
   const [repos, setRepos] = useState<Repository[]>([]);
