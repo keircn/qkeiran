@@ -4,7 +4,7 @@ import { GitHubRepo, RepoRequest } from '~/types/github';
 export async function POST(request: NextRequest) {
   try {
     const body: RepoRequest = await request.json();
-    
+
     if (!body.repos || !Array.isArray(body.repos)) {
       return NextResponse.json(
         { error: 'Invalid request body. Expected { repos: string[] }' },
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     const githubToken = process.env.GITHUB_TOKEN;
     const headers: HeadersInit = {
-      'Accept': 'application/vnd.github.v3+json',
+      Accept: 'application/vnd.github.v3+json',
       'User-Agent': 'Portfolio-App',
     };
 
@@ -42,15 +42,16 @@ export async function POST(request: NextRequest) {
     });
 
     const repos = await Promise.all(repoPromises);
-    
-    const validRepos = repos.filter((repo): repo is GitHubRepo => repo !== null);
+
+    const validRepos = repos.filter(
+      (repo): repo is GitHubRepo => repo !== null
+    );
 
     return NextResponse.json({
       repos: validRepos,
       total: validRepos.length,
       requested: body.repos.length,
     });
-
   } catch (error) {
     console.error('API Error:', error);
     return NextResponse.json(
@@ -62,11 +63,12 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   return NextResponse.json(
-    { 
-      message: 'Use POST method with { repos: ["username/repo", ...] } to fetch repository data',
+    {
+      message:
+        'Use POST method with { repos: ["username/repo", ...] } to fetch repository data',
       example: {
-        repos: ['keircn/archium', 'keircn/another-repo']
-      }
+        repos: ['keircn/archium', 'keircn/another-repo'],
+      },
     },
     { status: 405 }
   );
