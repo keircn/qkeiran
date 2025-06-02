@@ -14,7 +14,7 @@ import { ImagePopup } from '~/components/ImagePopup';
 
 export function HomeClient() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const avatarUrl = 'https://r2.slop.sh/ai-clara-pfp.png';
+  const avatarUrl = 'https://r2.slop.sh/rain-pfp.jpg';
 
   return (
     <main className='flex min-h-[90vh] flex-col items-center justify-center p-4 md:p-24'>
