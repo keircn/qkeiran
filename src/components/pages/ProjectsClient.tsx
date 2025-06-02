@@ -35,28 +35,48 @@ export function ProjectsClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const featuredRepos = [
+    'keircn/archium',
+    'keircn/qkeiran',
+    'keircn/e-zdocs',
+    'keircn/e-zhost-js',
+    'keircn/qkrn',
+    'keircn/hostman',
+    'keircn/anonhost',
+    'keircn/anonlink',
+    'keircn/ezmod',
+  ];
+
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch(
-          'https://api.github.com/users/keircn/repos?sort=updated&per_page=9'
-        );
+        const response = await fetch('/api/github/repos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            repos: featuredRepos,
+          }),
+        });
+
         if (!response.ok) {
           throw new Error('Failed to fetch repositories');
         }
+
         const data = await response.json();
-        const filteredRepos = data
-          .filter((repo: Repository) => !repo.name.includes('fork'))
-          .sort((a: Repository, b: Repository) => {
-            if (b.stargazers_count !== a.stargazers_count) {
-              return b.stargazers_count - a.stargazers_count;
-            }
-            return (
-              new Date(b.updated_at).getTime() -
-              new Date(a.updated_at).getTime()
-            );
-          });
-        setRepos(filteredRepos);
+        
+        const sortedRepos = data.repos.sort((a: Repository, b: Repository) => {
+          if (b.stargazers_count !== a.stargazers_count) {
+            return b.stargazers_count - a.stargazers_count;
+          }
+          return (
+            new Date(b.updated_at).getTime() -
+            new Date(a.updated_at).getTime()
+          );
+        });
+
+        setRepos(sortedRepos);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
@@ -78,7 +98,7 @@ export function ProjectsClient() {
       HTML: '#e34c26',
       Go: '#00ADD8',
       Rust: '#dea584',
-      PHP: '#4F5D95',
+      Shell: '#89e051',
     };
     return colors[language || ''] || '#6b7280';
   };
