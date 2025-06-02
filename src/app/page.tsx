@@ -1,4 +1,4 @@
-import { HomeClient } from 'cum/components/pages/HomeClient';
+import { HomeClient } from '~/components/pages/HomeClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

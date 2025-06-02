@@ -1,4 +1,4 @@
-import { ProjectsClient } from 'cum/components/pages/ProjectsClient';
+import { ProjectsClient } from '~/components/pages/ProjectsClient';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

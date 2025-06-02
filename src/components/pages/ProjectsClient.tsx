@@ -14,7 +14,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'cum/components/ui/card';
+} from '~/components/ui/card';
 
 interface Repository {
   id: number;

@@ -7,7 +7,7 @@ import { motion } from 'motion/react';
 import { FaCode } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 
-import { ModeToggle } from 'cum/components/layout/ThemeToggle';
+import { ModeToggle } from '~/components/layout/ThemeToggle';
 import Image from 'next/image';
 
 function NavbarComponent() {

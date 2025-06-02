@@ -1,6 +1,6 @@
 'use client';
 
-import bg from 'cum/assets/bg.svg';
+import bg from '~/assets/bg.svg';
 
 export function Background() {
   return (

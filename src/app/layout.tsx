@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { League_Spartan } from 'next/font/google';
-import { ThemeProvider } from 'cum/components/layout/ThemeProvider';
-import { Navbar } from 'cum/components/layout/Navbar';
-import { Background } from 'cum/components/layout/Background';
+import { ThemeProvider } from '~/components/layout/ThemeProvider';
+import { Navbar } from '~/components/layout/Navbar';
+import { Background } from '~/components/layout/Background';
 import './globals.css';
 
 const main = League_Spartan({

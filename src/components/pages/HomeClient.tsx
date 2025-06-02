@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { SocialLinks } from 'cum/components/SocialLinks';
+import { SocialLinks } from '~/components/SocialLinks';
 import { useState } from 'react';
 import {
   Card,
@@ -9,8 +9,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'cum/components/ui/card';
-import { ImagePopup } from 'cum/components/ImagePopup';
+} from '~/components/ui/card';
+import { ImagePopup } from '~/components/ImagePopup';
 
 export function HomeClient() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
