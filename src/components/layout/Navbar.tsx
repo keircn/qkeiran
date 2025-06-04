@@ -1,32 +1,28 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { memo } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { FaCode } from 'react-icons/fa';
-import { usePathname } from 'next/navigation';
 
 import { ModeToggle } from '~/components/layout/ThemeToggle';
 import Image from 'next/image';
 
-function NavbarComponent() {
-  const [shouldAnimate, setShouldAnimate] = useState(true);
-  const pathname = usePathname();
-  const firstRender = useRef(true);
+export function Navbar() {
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-    } else {
-      setShouldAnimate(false);
-    }
-  }, [pathname]);
+    const timer = setTimeout(() => {
+      setHasAnimated(true);
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <motion.div
-      initial={shouldAnimate ? { opacity: 0, y: -20 } : false}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: hasAnimated ? 1 : 0, y: hasAnimated ? 0 : -20 }}
       transition={{ duration: 0.3, delay: 0.1 }}
     >
       <header className='border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'>
@@ -59,6 +55,3 @@ function NavbarComponent() {
     </motion.div>
   );
 }
-
-export const Navbar = memo(NavbarComponent);
-Navbar.displayName = 'Navbar';
